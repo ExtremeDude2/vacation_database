@@ -1,6 +1,7 @@
 # Config files
 *.txt
 *.xml
+*.config
 
 # shared objects
 *.dll
