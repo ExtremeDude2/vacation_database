@@ -15,12 +15,12 @@ insert into hotel_location values ('hotel_3', 'Cancun', 'Mexico');
 insert into hotel_location values ('hotel_4', 'London', 'England');
 insert into hotel_location values ('hotel_5', 'Paris', 'France');
 
-insert into reviews values ('hotel_0', 5, '4/28/2015 12:00:00 AM');
-insert into reviews values ('hotel_1', 2, '4/28/2015 12:00:00 AM');
-insert into reviews values ('hotel_2', 2, '4/28/2015 12:00:00 AM');
-insert into reviews values ('hotel_3', 3, '4/28/2015 12:00:00 AM');
-insert into reviews values ('hotel_4', 4, '4/28/2015 12:00:00 AM');
-insert into reviews values ('hotel_5', 3, '4/28/2015 12:00:00 AM');
+insert into reviews values ('hotel_0', 5, '20160411');
+insert into reviews values ('hotel_1', 2, '20150928');
+insert into reviews values ('hotel_2', 2, '20150620');
+insert into reviews values ('hotel_3', 3, '20150422');
+insert into reviews values ('hotel_4', 4, '20150425');
+insert into reviews values ('hotel_5', 3, '20150429');
 
 insert into hotel_room values (1337, 'hotel_0', 2);
 insert into hotel_room values (1111, 'hotel_1', 3);
