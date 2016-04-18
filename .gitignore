@@ -33,3 +33,7 @@
 *.manifest
 *.plg
 *.tlog
+
+# bin/obj folders
+bin/
+obj/
