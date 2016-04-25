@@ -92,7 +92,8 @@ namespace Vacation_database
 
             catch (Exception err)
             {
-                
+                MessageBox.Show(err.ToString(),
+                "Error, picture not found", MessageBoxButtons.OK);
             }
 
             // Set all text boxes with information on selected location
@@ -108,8 +109,12 @@ namespace Vacation_database
         // Date select function
         private void dateTimePicker_ValueChanged(object sender, EventArgs e)
         {
-            // Get date selected
-            string dateResult = dateTimePicker.Value.ToString();
+            // Convert from string to DateTime
+            //string date = "20100102";
+            //DateTime datetime = DateTime.ParseExact(date, "yyyyMMdd", CultureInfo.InvariantCulture);
+
+        // Get date selected
+        string dateResult = dateTimePicker.Value.ToString();
 
             // Add code to take date and check the datebase if available
             //if (0)
