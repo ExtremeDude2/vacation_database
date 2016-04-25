@@ -37,3 +37,6 @@
 # bin/obj folders
 bin/
 obj/
+
+# Pictures
+*.jpg
