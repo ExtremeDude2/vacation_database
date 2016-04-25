@@ -30,23 +30,32 @@ namespace Vacation_database
             {
                 myConnection.Open();
             }
-            catch (Exception error)
+            catch (Exception err)
             {
-                Console.WriteLine(error.ToString());
+                Console.WriteLine(err.ToString());
             }
 
             SqlCommand cmd = new SqlCommand("SELECT city, country FROM hotel_location", myConnection);
             SqlDataReader reader = cmd.ExecuteReader();
 
-            ArrayList MyArray = new ArrayList();
+            ArrayList LocationArray = new ArrayList();
 
-            for (int i = 0; reader.Read(); i++)
+            for (int i = 1; reader.Read(); i++)
             {
-                MyArray.Add(reader.GetString(0) + ", " + reader.GetString(1));
+                // City                      // Country
+                LocationArray.Add(reader.GetString(0) + ", " + reader.GetString(1));
             }
 
-            MyArray.Sort();
-            locationSelect.DataSource = MyArray;
+            // Set up an array to start the drop downlist with
+            ArrayList SelectLocation = new ArrayList();
+            SelectLocation.Add("Select a Location");
+
+            // Sort locations alphabetically
+            LocationArray.Sort();
+            // Append the list of locations to the select array
+            SelectLocation.AddRange(LocationArray);
+            // Set the dropdown list
+            locationSelect.DataSource = SelectLocation;
 
             // Close sql connection
             reader.Close();
@@ -93,7 +102,7 @@ namespace Vacation_database
             catch (Exception err)
             {
                 MessageBox.Show(err.ToString(),
-                "Error, picture not found", MessageBoxButtons.OK);
+                "Error, unable to change picture", MessageBoxButtons.OK);
             }
 
             // Set all text boxes with information on selected location
@@ -113,8 +122,8 @@ namespace Vacation_database
             //string date = "20100102";
             //DateTime datetime = DateTime.ParseExact(date, "yyyyMMdd", CultureInfo.InvariantCulture);
 
-        // Get date selected
-        string dateResult = dateTimePicker.Value.ToString();
+            // Get date selected
+            string dateResult = dateTimePicker.Value.ToString();
 
             // Add code to take date and check the datebase if available
             //if (0)
