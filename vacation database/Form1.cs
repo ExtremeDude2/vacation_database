@@ -18,7 +18,7 @@ namespace Vacation_database
             InitializeComponent();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private SqlDataReader accessDB(string command)
         {
             // Access the database
             SqlConnection myConnection = new SqlConnection("Server=.\\SQLEXPRESS;" +
@@ -35,12 +35,20 @@ namespace Vacation_database
                 Console.WriteLine(err.ToString());
             }
 
-            SqlCommand cmd = new SqlCommand("SELECT city, country FROM hotel_location", myConnection);
+            // Execute the command in the database
+            SqlCommand cmd = new SqlCommand(command, myConnection);
             SqlDataReader reader = cmd.ExecuteReader();
+
+            return reader;
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            SqlDataReader reader = accessDB("SELECT city, country FROM hotel_location");
 
             ArrayList LocationArray = new ArrayList();
 
-            for (int i = 1; reader.Read(); i++)
+            for (int i = 0; reader.Read(); i++)
             {
                 // City                      // Country
                 LocationArray.Add(reader.GetString(0) + ", " + reader.GetString(1));
@@ -56,10 +64,6 @@ namespace Vacation_database
             SelectLocation.AddRange(LocationArray);
             // Set the dropdown list
             locationSelect.DataSource = SelectLocation;
-
-            // Close sql connection
-            reader.Close();
-            myConnection.Close();
 
             // Initialize picker to tomorrow
             DateTime result = DateTime.Today.Add(TimeSpan.FromDays(1));
@@ -106,13 +110,30 @@ namespace Vacation_database
             }
 
             // Set all text boxes with information on selected location
-            priceTextBox.Text = "$" + "1";
+
+            // Set price
+            SqlDataReader reader = accessDB("SELECT price FROM cost");
+
+            ArrayList cost = new ArrayList();
+
+            for (int i = 0; reader.Read(); i++)
+            {
+                cost.Add(reader.GetSqlInt32(0));
+            }
+
+            priceTextBox.Text = cost[0].ToString();
+
+            // Set if available or not
             //if (0)
                 availableTextBox.Text = "No";
             //else
             //    availableTextBox.Text = "Yes";
+
+            // Set number of beds
             bedsTextBox.Text = "1";
-            ratingTextBox.Text = "1";
+
+            // Set hotel rating
+            ratingTextBox.Text = "N/A";
         }
 
         // Date select function
