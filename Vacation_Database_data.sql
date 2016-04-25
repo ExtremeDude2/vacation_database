@@ -42,12 +42,3 @@ insert into reservation values (0, '20160430', 2222, 'hotel_2');
 insert into reservation values (0, '20160501', 3333, 'hotel_3');
 insert into reservation values (0, '20160511', 4444, 'hotel_4');
 insert into reservation values (0, '20160502', 5555, 'hotel_5');
-
-/*
-insert into size values (1337, 5);
-insert into size values (1111, 2);
-insert into size values (2222, 3);
-insert into size values (3333, 2);
-insert into size values (4444, 1);
-insert into size values (5555, 1);
-*/
