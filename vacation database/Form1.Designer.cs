@@ -132,7 +132,7 @@
             this.bedsLabel.Size = new System.Drawing.Size(107, 16);
             this.bedsLabel.TabIndex = 5;
             this.bedsLabel.Text = "Number of beds:";
-            this.bedsToolTip.SetToolTip(this.bedsLabel, "Number of beds in room, 2 people to a bed");
+            this.bedsToolTip.SetToolTip(this.bedsLabel, "Number of beds in room, upto 2 people per bed");
             // 
             // ratingLabel
             // 
