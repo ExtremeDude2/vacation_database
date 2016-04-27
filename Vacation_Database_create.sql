@@ -30,7 +30,7 @@ CREATE TABLE hotel_room (
 
 -- Table: reservation
 CREATE TABLE reservation (
-    "current" int  NOT NULL,
+    available int  NOT NULL,
     next_date_available char(21)  NOT NULL,
     room_num int  NOT NULL,
     hotel_name varchar(127)  NOT NULL,
