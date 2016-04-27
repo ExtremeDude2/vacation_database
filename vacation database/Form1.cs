@@ -146,7 +146,16 @@ namespace Vacation_database
             }
 
             // Set number of beds
-            bedsTextBox.Text = "1";
+            SqlDataReader num_beds = accessDB("SELECT num_beds FROM hotel_room");
+
+            ArrayList beds_hotel_room = new ArrayList();
+
+            for (int i = 0; num_beds.Read(); i++)
+            {
+                beds_hotel_room.Add(num_beds.GetSqlInt32(0));
+            }
+
+            bedsTextBox.Text = beds_hotel_room[0].ToString();
 
             // Set hotel rating
             ratingTextBox.Text = "N/A";
