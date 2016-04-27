@@ -158,7 +158,15 @@ namespace Vacation_database
             bedsTextBox.Text = beds_hotel_room[0].ToString();
 
             // Set hotel rating
-            ratingTextBox.Text = "N/A";
+            SqlDataReader rating = accessDB("SELECT rating FROM reviews");
+
+            ArrayList rating_reviews = new ArrayList();
+
+            for (int i = 0; rating.Read(); i++)
+            {
+                rating_reviews.Add(rating.GetSqlInt32(0));
+            }
+            ratingTextBox.Text = rating_reviews[0].ToString();
         }
 
         // Date select function
