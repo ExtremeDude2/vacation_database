@@ -200,6 +200,7 @@
             // 
             // dateTimePicker
             // 
+            this.dateTimePicker.CustomFormat = "yyyyMMdd";
             this.dateTimePicker.Location = new System.Drawing.Point(12, 55);
             this.dateTimePicker.MaxDate = new System.DateTime(2020, 12, 31, 0, 0, 0, 0);
             this.dateTimePicker.MinDate = new System.DateTime(2015, 4, 26, 0, 0, 0, 0);

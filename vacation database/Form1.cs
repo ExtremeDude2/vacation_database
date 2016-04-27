@@ -44,7 +44,7 @@ namespace Vacation_database
 
             for (int i = 0; reader.Read(); i++)
             {
-                // City                      // Country
+                // City                                     // Country
                 LocationArray.Add(reader.GetString(0) + ", " + reader.GetString(1));
             }
 
@@ -106,22 +106,44 @@ namespace Vacation_database
             // Set all text boxes with information on selected location
 
             // Set price
-            SqlDataReader reader = accessDB("SELECT price FROM cost");
+            SqlDataReader price = accessDB("SELECT price FROM cost");
 
             ArrayList cost = new ArrayList();
 
-            for (int i = 0; reader.Read(); i++)
+            for (int i = 0; price.Read(); i++)
             {
-                cost.Add(reader.GetSqlInt32(0));
+                cost.Add(price.GetSqlInt32(0));
             }
 
             priceTextBox.Text = cost[0].ToString();
 
             // Set if available or not
-            //if (0)
-                availableTextBox.Text = "No";
-            //else
-            //    availableTextBox.Text = "Yes";
+            SqlDataReader available = accessDB("SELECT available FROM reservation"/* WHERE next_date_available = " + dateTimePicker.Value.ToString()*/);
+
+            ArrayList available_reservation = new ArrayList();
+
+            for (int i = 0; available.Read(); i++)
+            {
+                available_reservation.Add(available.GetSqlInt32(0));
+            }
+
+            if (available_reservation[0].Equals(1))
+            {
+                availableTextBox.Text = "Yes";
+            }
+            else
+            {
+                SqlDataReader next = accessDB("SELECT next_date_available FROM reservation");
+
+                ArrayList next_available = new ArrayList();
+
+                for (int i = 0; next.Read(); i++)
+                {
+                    next_available.Add(next.GetSqlString(0));
+                }
+
+                availableTextBox.Text = next_available[0].ToString();
+            }
 
             // Set number of beds
             bedsTextBox.Text = "1";
@@ -140,11 +162,33 @@ namespace Vacation_database
             // Get date selected
             string dateResult = dateTimePicker.Value.ToString();
 
-            // Add code to take date and check the datebase if available
-            //if (0)
-                availableTextBox.Text = "No";
-            //else
-            //    availableTextBox.Text = "Yes";
+            // Set if available or not
+            SqlDataReader available = accessDB("SELECT available FROM reservation"/* WHERE next_date_available = " + dateTimePicker.Value.ToString()*/);
+
+            ArrayList available_reservation = new ArrayList();
+
+            for (int i = 0; available.Read(); i++)
+            {
+                available_reservation.Add(available.GetSqlInt32(0));
+            }
+
+            if (available_reservation[0].Equals(1))
+            {
+                availableTextBox.Text = "Yes";
+            }
+            else
+            {
+                SqlDataReader next = accessDB("SELECT next_date_available FROM reservation");
+
+                ArrayList next_available = new ArrayList();
+
+                for (int i = 0; next.Read(); i++)
+                {
+                    next_available.Add(next.GetSqlString(0));
+                }
+
+                availableTextBox.Text = next_available[0].ToString();
+            }
         }
     }
 }
