@@ -15,7 +15,7 @@ namespace Vacation_database
         private SqlDataReader accessDB(string command)
         {
             // Access the database
-            SqlConnection myConnection = new SqlConnection("Server=.\\SQLEXPRESS;" +
+            SqlConnection myConnection = new SqlConnection("Server=LOCALHOST;" +
                                                             "Database=vacation_database;" +
                                                             "Integrated Security=true;" +
                                                             "connection timeout=15");
